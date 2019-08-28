@@ -46,18 +46,18 @@ class Robert(pygame.sprite.Sprite):
         self.speedy = 0
         keyState = pygame.key.get_pressed()
         if keyState[pygame.K_LEFT]:
-            self.speedx = -3
+            self.speedx = -2.4
         if keyState[pygame.K_RIGHT]:
-            self.speedx = 3
+            self.speedx = 2.4
         self.rect.x += self.speedx
         if self.rect.right > 700:
             self.rect.right = 700
         if self.rect.right < 0:
             self.rect.left = 0
         if keyState[pygame.K_UP]:
-            self.speedy = -4.65
+            self.speedy = -4.25
         if keyState[pygame.K_DOWN]:
-            self.speedy = 2.7
+            self.speedy = 2.6
         self.rect.y += self.speedy
         if self.rect.y < 325:
             self.rect.y = 325
@@ -79,18 +79,18 @@ class Camden(pygame.sprite.Sprite):
         self.speedy = 0
         keyState = pygame.key.get_pressed()
         if keyState[pygame.K_a]:
-            self.speedx = -4.2
+            self.speedx = -3.5
         if keyState[pygame.K_d]:
-            self.speedx = 4.2
+            self.speedx = 3.5
         self.rect.x += self.speedx
         if self.rect.right > 700:
             self.rect.right = 700
         if self.rect.right < 0:
             self.rect.left = 0
         if keyState[pygame.K_w]:
-            self.speedy = -5
+            self.speedy = -3.3
         if keyState[pygame.K_s]:
-            self.speedy = 3.75
+            self.speedy = 4.75
         self.rect.y += self.speedy
         if self.rect.y > 250:
             self.rect.y = 250
@@ -103,7 +103,6 @@ class Ball(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load("tennisBall.png")
         self.rect = self.image.get_rect()
-        self.rect.center = (420, 450)
         self.speedx = 0
         self.speedy = 0
 
@@ -114,7 +113,7 @@ class Ball(pygame.sprite.Sprite):
             effect = pygame.mixer.Sound('tennisserve.wav')
             effect.play(0)
             robert.rect.y -5
-            self.speedy = -8
+            self.speedy = -13
             self.speedx = 3
 
         #Robert's backhand
@@ -123,9 +122,24 @@ class Ball(pygame.sprite.Sprite):
             effect = pygame.mixer.Sound('tennisserve.wav')
             effect.play(0)
             robert.rect.y -5
-            self.speedy = -7
+            self.speedy = -12
             self.speedx = -2
 
+        #Robert's forehand volley
+        if tennisBall.rect.colliderect(robert) and tennisBall.rect.x > robert.rect.x + 10 and 325 < robert.rect.y < 450:
+            robert.image = pygame.image.load("robert_imgs/Robert_tennis2 (1).png")
+            effect = pygame.mixer.Sound('tennisserve.wav')
+            effect.play(0)
+            robert.rect.y -5
+            self.speedy = -5
+
+        #Robert's backhand
+        if tennisBall.rect.colliderect(robert) and tennisBall.rect.x < robert.rect.x - 10 and 325 < robert.rect.y < 450:
+            robert.image = pygame.image.load("robert_imgs/Robert_tennis2_backhand.png")
+            effect = pygame.mixer.Sound('tennisserve.wav')
+            effect.play(0)
+            robert.rect.y -5
+            self.speedy = -4.5
 
         #Camden's forehand
         if tennisBall.rect.colliderect(camden) and tennisBall.rect.x < camden.rect.x -10:
@@ -133,17 +147,33 @@ class Ball(pygame.sprite.Sprite):
             effect = pygame.mixer.Sound('tennisserve.wav')
             effect.play(0)
             camden.rect.y -5
-            self.speedy = 9
+            self.speedy = 14
             self.speedx = 2
 
-        #Camden's forehand
+        #Camden's backhand
         if tennisBall.rect.colliderect(camden) and tennisBall.rect.x > camden.rect.x + 10:
             camden.image = pygame.image.load("camden_imgs/camden_front_backhand-1.png.png")
             effect = pygame.mixer.Sound('tennisserve.wav')
             effect.play(0)
             camden.rect.y -5
-            self.speedy = 8
+            self.speedy = 13
             self.speedx = 2
+
+        #Camden's forehand volley
+        if tennisBall.rect.colliderect(camden) and tennisBall.rect.x < camden.rect.x -10 and 200 < camden.rect.y < 325:
+            camden.image = pygame.image.load("camden_imgs/camden_front_forehand.png")
+            effect = pygame.mixer.Sound('tennisserve.wav')
+            effect.play(0)
+            camden.rect.y -5
+            self.speedy = 3.75
+
+        #Camden's backhand
+        if tennisBall.rect.colliderect(camden) and tennisBall.rect.x > camden.rect.x + 10 and 200 < camden.rect.y < 325:
+            camden.image = pygame.image.load("camden_imgs/camden_front_backhand-1.png.png")
+            effect = pygame.mixer.Sound('tennisserve.wav')
+            effect.play(0)
+            camden.rect.y -5
+            self.speedy = 3.75
 
         keyState = pygame.key.get_pressed()
 
@@ -241,57 +271,8 @@ while carryOn:
                 if stops == 5:
                     score = 0
                     score2 = 0
-                    setScore = 1
-                if stops == 6:
-                    score = 15
-                if stops == 7:
-                    score = 30
-                if stops == 8:
-                    score = 40
-                if stops == 9:
-                    score = 0
-                    score2 = 0
-                    setScore = 2
-                if stops == 10:
-                    score = 15
-                if stops == 11:
-                    score = 30
-                if stops == 12:
-                    score = 40
-                if stops == 13:
-                    score = 0
-                    score2 = 0
-                    setScore = 3
-                if stops == 14:
-                    score = 15
-                if stops == 15:
-                    score = 30
-                if stops == 16:
-                    score = 40
-                if stops == 17:
-                    score = 0
-                    score2 = 0
-                    setScore = 4
-                if stops == 18:
-                    score = 15
-                if stops == 19:
-                    score = 30
-                if stops == 20:
-                    score = 40
-                if stops == 21:
-                    score = 0
-                    score2 = 0
-                    setScore = 5
-                if stops == 22:
-                    score = 15
-                if stops == 23:
-                    score = 30
-                if stops == 24:
-                    score = 40
-                if stops == 25:
-                    score = 0
-                    score2 = 0
-                    setScore = 6
+                    setScore += 1
+                    stops = 1
 
         else:
             #If the shot was not in bounds, the bottom player scores a point
@@ -310,57 +291,8 @@ while carryOn:
                 if stops2 == 4:
                     score2 = 0
                     score = 0
-                    setScore2 = 1
-                if stops2 == 5:
-                    score2 = 15
-                if stops2 == 6:
-                    score2 = 30
-                if stops2 == 7:
-                    score2 = 40
-                if stops2 == 8:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 2
-                if stops2 == 9:
-                    score2 = 15
-                if stops2 == 10:
-                    score2 = 30
-                if stops2 == 11:
-                    score2 = 40
-                if stops2 == 12:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 3
-                if stops2 == 13:
-                    score2 = 15
-                if stops2 == 14:
-                    score2 = 30
-                if stops2 == 15:
-                    score2 = 40
-                if stops2 == 16:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 4
-                if stops2 == 17:
-                    score2 = 15
-                if stops2 == 18:
-                    score2 = 30
-                if stops2 == 19:
-                    score2 = 40
-                if stops2 == 20:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 5
-                if stops2 == 21:
-                    score2 = 15
-                if stops2 == 22:
-                    score2 = 30
-                if stops2 == 23:
-                    score2 = 40
-                if stops2 == 24:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 6
+                    setScore2 += 1
+                    stops2 = 0
 
     #Checks to see if the bottom player's shot made it over the net
     elif tennisBall.rect.y < 325:
@@ -380,57 +312,9 @@ while carryOn:
                 if stops2 == 4:
                     score2 = 0
                     score = 0
-                    setScore2 = 1
-                if stops2 == 5:
-                    score2 = 15
-                if stops2 == 6:
-                    score2 = 30
-                if stops2 == 7:
-                    score2 = 40
-                if stops2 == 8:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 2
-                if stops2 == 9:
-                    score2 = 15
-                if stops2 == 10:
-                    score2 = 30
-                if stops2 == 11:
-                    score2 = 40
-                if stops2 == 12:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 3
-                if stops2 == 13:
-                    score2 = 15
-                if stops2 == 14:
-                    score2 = 30
-                if stops2 == 15:
-                    score2 = 40
-                if stops2 == 16:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 4
-                if stops2 == 17:
-                    score2 = 15
-                if stops2 == 18:
-                    score2 = 30
-                if stops2 == 19:
-                    score2 = 40
-                if stops2 == 20:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 5
-                if stops2 == 21:
-                    score2 = 15
-                if stops2 == 22:
-                    score2 = 30
-                if stops2 == 23:
-                    score2 = 40
-                if stops2 == 24:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 6
+                    setScore2 += 1
+                    stops2 = 0
+
         else:
             #If the shot was not in bounds, the top player scores a point
             if abs(tennisBall.speedx) > epsilonComp and abs(tennisBall.speedy) > epsilonComp:
@@ -448,59 +332,8 @@ while carryOn:
                 if stops == 5:
                     score = 0
                     score2 = 0
-                    setScore = 1
-                if stops == 6:
-                    score = 15
-                if stops == 7:
-                    score = 30
-                if stops == 8:
-                    score = 40
-                if stops == 9:
-                    score = 0
-                    score2 = 0
-                    setScore = 2
-                if stops == 10:
-                    score = 15
-                if stops == 11:
-                    score = 30
-                if stops == 12:
-                    score = 40
-                if stops == 13:
-                    score = 0
-                    score2 = 0
-                    setScore = 3
-                if stops == 14:
-                    score = 15
-                if stops == 15:
-                    score = 30
-                if stops == 16:
-                    score = 40
-                if stops == 17:
-                    score = 0
-                    score2 = 0
-                    setScore = 4
-                if stops == 18:
-                    score = 15
-                if stops == 19:
-                    score = 30
-                if stops == 20:
-                    score = 40
-                if stops == 21:
-                    score = 0
-                    score2 = 0
-                    setScore = 5
-                if stops == 22:
-                    score = 15
-                if stops == 23:
-                    score = 30
-                if stops == 24:
-                    score = 40
-                if stops == 25:
-                    score = 0
-                    score2 = 0
-                    setScore = 6
-
-
+                    stops = 1
+                    setScore += 1
 
     #Render both scoreboards
     scorebox = font.render(str(score), True, WHITE, BLACK)

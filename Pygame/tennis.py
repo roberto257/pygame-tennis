@@ -224,22 +224,18 @@ all_sprites.add(camden)
 carryOn = True
 clock = pygame.time.Clock()
 
-#Declare scoring variables so that they can be used within the loop
+#Declare global scoring variables so that they can be used within the loop
 global score
 score = 0
-
 global score2
 score2 = 0
-
 global setScore
 setScore = 0
-
 global setScore2
 setScore2 = 0
 
 stops = 0
 ball_is_stopped = False
-
 stops2 = 0
 ball_is_stopped2 = False
 
@@ -253,7 +249,6 @@ while carryOn:
     tennisBall.update()
 
     epsilonComp = .2
-
     #Checks to see if the top player's shot made it over the net
     if tennisBall.rect.y > 325:
         #Checks to make sure it's in bounds
@@ -273,57 +268,9 @@ while carryOn:
                 if stops == 5:
                     score = 0
                     score2 = 0
-                    setScore = 1
-                if stops == 6:
-                    score = 15
-                if stops == 7:
-                    score = 30
-                if stops == 8:
-                    score = 40
-                if stops == 9:
-                    score = 0
-                    score2 = 0
-                    setScore = 2
-                if stops == 10:
-                    score = 15
-                if stops == 11:
-                    score = 30
-                if stops == 12:
-                    score = 40
-                if stops == 13:
-                    score = 0
-                    score2 = 0
-                    setScore = 3
-                if stops == 14:
-                    score = 15
-                if stops == 15:
-                    score = 30
-                if stops == 16:
-                    score = 40
-                if stops == 17:
-                    score = 0
-                    score2 = 0
-                    setScore = 4
-                if stops == 18:
-                    score = 15
-                if stops == 19:
-                    score = 30
-                if stops == 20:
-                    score = 40
-                if stops == 21:
-                    score = 0
-                    score2 = 0
-                    setScore = 5
-                if stops == 22:
-                    score = 15
-                if stops == 23:
-                    score = 30
-                if stops == 24:
-                    score = 40
-                if stops == 25:
-                    score = 0
-                    score2 = 0
-                    setScore = 6
+                    stops = 1
+                    setScore += 1
+                    stops2 = 0
 
         else:
             #If the shot was not in bounds, the bottom player scores a point
@@ -342,57 +289,9 @@ while carryOn:
                 if stops2 == 4:
                     score2 = 0
                     score = 0
-                    setScore2 = 1
-                if stops2 == 5:
-                    score2 = 15
-                if stops2 == 6:
-                    score2 = 30
-                if stops2 == 7:
-                    score2 = 40
-                if stops2 == 8:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 2
-                if stops2 == 9:
-                    score2 = 15
-                if stops2 == 10:
-                    score2 = 30
-                if stops2 == 11:
-                    score2 = 40
-                if stops2 == 12:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 3
-                if stops2 == 13:
-                    score2 = 15
-                if stops2 == 14:
-                    score2 = 30
-                if stops2 == 15:
-                    score2 = 40
-                if stops2 == 16:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 4
-                if stops2 == 17:
-                    score2 = 15
-                if stops2 == 18:
-                    score2 = 30
-                if stops2 == 19:
-                    score2 = 40
-                if stops2 == 20:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 5
-                if stops2 == 21:
-                    score2 = 15
-                if stops2 == 22:
-                    score2 = 30
-                if stops2 == 23:
-                    score2 = 40
-                if stops2 == 24:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 6
+                    setScore2 += 1
+                    stops2 = 0
+                    stops = 1
 
     #Checks to see if the bottom player's shot made it over the net
     elif tennisBall.rect.y < 325:
@@ -412,57 +311,10 @@ while carryOn:
                 if stops2 == 4:
                     score2 = 0
                     score = 0
-                    setScore2 = 1
-                if stops2 == 5:
-                    score2 = 15
-                if stops2 == 6:
-                    score2 = 30
-                if stops2 == 7:
-                    score2 = 40
-                if stops2 == 8:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 2
-                if stops2 == 9:
-                    score2 = 15
-                if stops2 == 10:
-                    score2 = 30
-                if stops2 == 11:
-                    score2 = 40
-                if stops2 == 12:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 3
-                if stops2 == 13:
-                    score2 = 15
-                if stops2 == 14:
-                    score2 = 30
-                if stops2 == 15:
-                    score2 = 40
-                if stops2 == 16:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 4
-                if stops2 == 17:
-                    score2 = 15
-                if stops2 == 18:
-                    score2 = 30
-                if stops2 == 19:
-                    score2 = 40
-                if stops2 == 20:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 5
-                if stops2 == 21:
-                    score2 = 15
-                if stops2 == 22:
-                    score2 = 30
-                if stops2 == 23:
-                    score2 = 40
-                if stops2 == 24:
-                    score2 = 0
-                    score = 0
-                    setScore2 = 6
+                    setScore2 += 1
+                    stops2 = 0
+                    stops = 1
+
         else:
             #If the shot was not in bounds, the top player scores a point
             if abs(tennisBall.speedx) > epsilonComp and abs(tennisBall.speedy) > epsilonComp:
@@ -480,59 +332,9 @@ while carryOn:
                 if stops == 5:
                     score = 0
                     score2 = 0
-                    setScore = 1
-                if stops == 6:
-                    score = 15
-                if stops == 7:
-                    score = 30
-                if stops == 8:
-                    score = 40
-                if stops == 9:
-                    score = 0
-                    score2 = 0
-                    setScore = 2
-                if stops == 10:
-                    score = 15
-                if stops == 11:
-                    score = 30
-                if stops == 12:
-                    score = 40
-                if stops == 13:
-                    score = 0
-                    score2 = 0
-                    setScore = 3
-                if stops == 14:
-                    score = 15
-                if stops == 15:
-                    score = 30
-                if stops == 16:
-                    score = 40
-                if stops == 17:
-                    score = 0
-                    score2 = 0
-                    setScore = 4
-                if stops == 18:
-                    score = 15
-                if stops == 19:
-                    score = 30
-                if stops == 20:
-                    score = 40
-                if stops == 21:
-                    score = 0
-                    score2 = 0
-                    setScore = 5
-                if stops == 22:
-                    score = 15
-                if stops == 23:
-                    score = 30
-                if stops == 24:
-                    score = 40
-                if stops == 25:
-                    score = 0
-                    score2 = 0
-                    setScore = 6
-
-
+                    setScore += 1
+                    stops = 1
+                    stop2 = 0
 
     #Render both scoreboards
     scorebox = font.render(str(score), True, WHITE, BLACK)
@@ -562,9 +364,9 @@ while carryOn:
                 carryOn = False
 
     all_sprites.update()
-    """
-    All the court lines drawn here in the main loop
-    """
+
+    #All the court lines drawn here in the main loop
+
     #Draw the court
     pygame.draw.rect(screen, COURT, [175, 75, 350, 500])
     #outer left line
